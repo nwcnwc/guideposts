@@ -3,142 +3,184 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guideposts — Curated AI Prompts</title>
-<meta name="description" content="Curated prompts. Your favorite AI. Personalized answers.">
+<title>Guideposts — Your Path to a Personal AI</title>
+<meta name="description" content="A guided series of prompts to set up your own personal AI assistant at home. Copy each prompt, ask your favorite AI, and follow the trail.">
 <meta property="og:title" content="Guideposts">
-<meta property="og:description" content="Curated prompts. Your favorite AI. Personalized answers.">
+<meta property="og:description" content="A guided series of prompts to set up your own personal AI assistant at home.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://guideposts.nathancheng.com">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧭</text></svg>">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#ffffff;--bg2:#f7f8fa;--text:#1a1a2e;--text2:#555;--border:#e8e8e8;
-  --card-bg:#fff;--card-shadow:0 2px 12px rgba(0,0,0,.08);--card-hover-shadow:0 4px 20px rgba(0,0,0,.12);
-  --pill-bg:#f0f0f0;--pill-text:#444;
+  --bg:#fafaf9;--bg2:#f0efe9;--text:#1a1a1a;--text2:#666;--text3:#999;
+  --border:#e0ddd5;--card-bg:#ffffff;
+  --card-shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.04);
+  --card-hover-shadow:0 2px 8px rgba(0,0,0,.08),0 8px 32px rgba(0,0,0,.06);
+  --accent:#2d5a27;--accent2:#3d7a34;
+  --trail:#d4cfc4;--trail-active:#2d5a27;
+  --step-bg:#2d5a27;--step-text:#fff;
+  --complete-bg:#e8f0e6;--complete-border:#b8d4b0;
 }
 [data-theme="dark"]{
-  --bg:#0f0f1a;--bg2:#1a1a2e;--text:#e8e8e8;--text2:#aaa;--border:#2a2a3e;
-  --card-bg:#1a1a2e;--card-shadow:0 2px 12px rgba(0,0,0,.3);--card-hover-shadow:0 4px 20px rgba(0,0,0,.4);
-  --pill-bg:#2a2a3e;--pill-text:#bbb;
+  --bg:#111110;--bg2:#1a1918;--text:#e5e4e0;--text2:#999;--text3:#666;
+  --border:#2a2926;--card-bg:#1e1d1b;
+  --card-shadow:0 1px 3px rgba(0,0,0,.2),0 4px 16px rgba(0,0,0,.15);
+  --card-hover-shadow:0 2px 8px rgba(0,0,0,.25),0 8px 32px rgba(0,0,0,.2);
+  --accent:#6abf5e;--accent2:#8dd882;
+  --trail:#2a2926;--trail-active:#6abf5e;
+  --step-bg:#6abf5e;--step-text:#111;
+  --complete-bg:#1a2619;--complete-border:#2d4a28;
 }
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
-a{color:inherit;text-decoration:none}
+body{font-family:'Georgia','Times New Roman',serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .3s,color .3s}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
 
-/* Header */
-.header{text-align:center;padding:3rem 1.5rem 1.5rem;background:var(--bg2);border-bottom:1px solid var(--border)}
-.logo{display:inline-flex;align-items:center;gap:.6rem;font-size:2.2rem;font-weight:800;letter-spacing:-.02em}
-.logo svg{width:40px;height:40px}
-.subtitle{color:var(--text2);margin-top:.4rem;font-size:1.05rem;font-weight:400}
-.theme-toggle{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;font-size:1.5rem;cursor:pointer;padding:.4rem;border-radius:50%;transition:transform .2s}
-.theme-toggle:hover{transform:scale(1.15)}
+.theme-toggle{position:fixed;top:1.2rem;right:1.5rem;background:var(--card-bg);border:1px solid var(--border);font-size:1.3rem;cursor:pointer;padding:.5rem;border-radius:50%;transition:transform .2s;z-index:10;width:44px;height:44px;display:flex;align-items:center;justify-content:center}
+.theme-toggle:hover{transform:scale(1.1)}
 
-/* Filters */
-.filters{display:flex;gap:.5rem;padding:1rem 1.5rem;overflow-x:auto;justify-content:center;flex-wrap:wrap;background:var(--bg2);border-bottom:1px solid var(--border)}
-.filter-btn{padding:.45rem 1.1rem;border-radius:99px;border:1.5px solid var(--border);background:var(--card-bg);color:var(--text2);font-size:.88rem;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
-.filter-btn:hover,.filter-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+/* Hero */
+.hero{text-align:center;padding:4rem 1.5rem 3rem;max-width:680px;margin:0 auto}
+.hero-icon{font-size:3.5rem;margin-bottom:1rem}
+.hero h1{font-size:2.4rem;font-weight:700;letter-spacing:-.02em;line-height:1.2;margin-bottom:1rem}
+.hero-sub{color:var(--text2);font-size:1.15rem;line-height:1.7;max-width:520px;margin:0 auto 1.5rem}
+.hero-instructions{color:var(--text3);font-size:.95rem;font-style:italic}
 
-/* Feed */
-.feed{max-width:640px;margin:0 auto;padding:1.5rem 1rem 3rem}
-.card{background:var(--card-bg);border-radius:16px;box-shadow:var(--card-shadow);padding:1.5rem;margin-bottom:1.25rem;transition:box-shadow .25s,transform .25s;border:1px solid var(--border)}
-.card:hover{box-shadow:var(--card-hover-shadow);transform:translateY(-1px)}
-.card.hidden{display:none}
+/* Trail */
+.trail{max-width:640px;margin:0 auto;padding:0 1rem 4rem;position:relative}
 
-.card-topic{display:inline-block;font-size:.78rem;font-weight:600;padding:.25rem .7rem;border-radius:99px;margin-bottom:.8rem;text-transform:uppercase;letter-spacing:.03em}
-.topic-business{background:#e8f5e9;color:#2e7d32}
-.topic-career{background:#e3f2fd;color:#1565c0}
-.topic-finance{background:#fff3e0;color:#e65100}
-.topic-health{background:#fce4ec;color:#c62828}
-.topic-tech{background:#ede7f6;color:#4527a0}
-.topic-life{background:#fff8e1;color:#f57f17}
-[data-theme="dark"] .topic-business{background:#1b3d1e;color:#81c784}
-[data-theme="dark"] .topic-career{background:#0d2744;color:#64b5f6}
-[data-theme="dark"] .topic-finance{background:#3e2000;color:#ffb74d}
-[data-theme="dark"] .topic-health{background:#3e0c0c;color:#ef9a9a}
-[data-theme="dark"] .topic-tech{background:#1a0e33;color:#b39ddb}
-[data-theme="dark"] .topic-life{background:#3e3200;color:#fff176}
+/* Vertical line */
+.trail::before{content:'';position:absolute;left:28px;top:0;bottom:3rem;width:2px;background:var(--trail)}
 
-.card-prompt{font-size:1.15rem;line-height:1.55;font-weight:500;margin-bottom:1.2rem;color:var(--text)}
+.step{position:relative;padding-left:72px;margin-bottom:2.5rem}
 
-.card-actions{display:flex;align-items:center;justify-content:space-between}
-.ai-buttons{display:flex;gap:.6rem;align-items:center}
-.ai-buttons span{font-size:.75rem;color:var(--text2);font-weight:500;margin-right:.2rem}
-.ai-btn{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;cursor:pointer;position:relative;border:none;background:transparent}
+.step-number{position:absolute;left:8px;top:0;width:42px;height:42px;border-radius:50%;background:var(--step-bg);color:var(--step-text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:1rem;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:1;transition:transform .2s}
+.step:hover .step-number{transform:scale(1.1)}
+
+.step-title{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:.82rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:.5rem}
+
+.step-card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.5rem;box-shadow:var(--card-shadow);transition:box-shadow .25s,transform .25s}
+.step-card:hover{box-shadow:var(--card-hover-shadow);transform:translateY(-1px)}
+
+.step-prompt{font-size:1.12rem;line-height:1.65;margin-bottom:1.2rem;color:var(--text)}
+
+.step-actions{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+
+.ai-buttons{display:flex;gap:.5rem;align-items:center}
+.ai-label{font-family:-apple-system,sans-serif;font-size:.75rem;color:var(--text3);font-weight:500;margin-right:.15rem}
+.ai-btn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s;cursor:pointer;border:none;position:relative}
 .ai-btn:hover{transform:scale(1.12);box-shadow:0 3px 12px rgba(0,0,0,.15)}
-.ai-btn svg{width:26px;height:26px}
-.ai-btn::after{content:attr(data-tooltip);position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);font-size:.72rem;background:var(--text);color:var(--bg);padding:3px 8px;border-radius:6px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
+.ai-btn svg{width:22px;height:22px}
+.ai-btn::after{content:attr(data-tooltip);position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);font-family:-apple-system,sans-serif;font-size:.7rem;background:var(--text);color:var(--bg);padding:2px 7px;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s}
 .ai-btn:hover::after{opacity:1}
-
 .btn-chatgpt{background:#10a37f}
 .btn-claude{background:#d97706}
 .btn-grok{background:#1d9bf0}
 .btn-perplexity{background:#6366f1}
 
-.share-btn{background:none;border:none;color:var(--text2);cursor:pointer;font-size:.85rem;display:flex;align-items:center;gap:.3rem;padding:.4rem .7rem;border-radius:8px;transition:background .2s}
-.share-btn:hover{background:var(--pill-bg)}
-.share-btn svg{width:18px;height:18px}
+.copy-btn{font-family:-apple-system,sans-serif;background:none;border:1px solid var(--border);color:var(--text2);cursor:pointer;font-size:.82rem;display:flex;align-items:center;gap:.35rem;padding:.45rem .8rem;border-radius:8px;transition:all .2s}
+.copy-btn:hover{background:var(--bg2);color:var(--text)}
+.copy-btn svg{width:16px;height:16px}
 
-/* Toast */
-.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);padding:.7rem 1.4rem;border-radius:12px;font-size:.9rem;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:99}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* Outro */
+.outro{max-width:640px;margin:0 auto;padding:0 1rem 3rem;text-align:center}
+.outro p{color:var(--text2);font-size:1.05rem;line-height:1.7;max-width:500px;margin:0 auto}
+.outro em{color:var(--text3)}
 
 /* Footer */
-.footer{text-align:center;padding:2rem 1rem;color:var(--text2);font-size:.85rem;border-top:1px solid var(--border)}
-.footer a{font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.footer{text-align:center;padding:2rem 1rem;color:var(--text3);font-family:-apple-system,sans-serif;font-size:.85rem;border-top:1px solid var(--border)}
+.footer a{font-weight:600;color:var(--text2)}
+
+/* Toast */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);padding:.7rem 1.4rem;border-radius:12px;font-family:-apple-system,sans-serif;font-size:.9rem;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:99}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media(max-width:480px){
-  .logo{font-size:1.7rem}
-  .logo svg{width:32px;height:32px}
-  .subtitle{font-size:.92rem}
-  .card{padding:1.2rem}
-  .card-prompt{font-size:1.05rem}
-  .ai-btn{width:40px;height:40px}
-  .ai-btn svg{width:22px;height:22px}
+  .hero h1{font-size:1.8rem}
+  .hero-sub{font-size:1rem}
+  .step{padding-left:60px;margin-bottom:2rem}
+  .step-number{width:36px;height:36px;font-size:.9rem;left:10px}
+  .trail::before{left:27px}
+  .step-card{padding:1.2rem}
+  .step-prompt{font-size:1.02rem}
+  .ai-btn{width:36px;height:36px}
+  .ai-btn svg{width:20px;height:20px}
 }
 </style>
 </head>
 <body>
 <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
-<header class="header">
-  <div class="logo">
-    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2.5" fill="none"/>
-      <path d="M20 6 L20 34 M6 20 L34 20" stroke="currentColor" stroke-width="1.5" opacity=".3"/>
-      <path d="M20 8 L23 18 L20 16 L17 18 Z" fill="#e74c3c"/>
-      <path d="M20 32 L17 22 L20 24 L23 22 Z" fill="currentColor" opacity=".4"/>
-    </svg>
-    Guideposts
-  </div>
-  <p class="subtitle">Curated prompts. Your favorite AI. Personalized answers.</p>
-</header>
 
-<nav class="filters" id="filters">
-  <button class="filter-btn active" data-filter="all">All</button>
-  <button class="filter-btn" data-filter="business">Business</button>
-  <button class="filter-btn" data-filter="career">Career</button>
-  <button class="filter-btn" data-filter="finance">Finance</button>
-  <button class="filter-btn" data-filter="health">Health</button>
-  <button class="filter-btn" data-filter="tech">Tech</button>
-  <button class="filter-btn" data-filter="life">Life</button>
-</nav>
+<section class="hero">
+  <div class="hero-icon">🧭</div>
+  <h1>The Claw Path</h1>
+  <p class="hero-sub">A guided series of 10 prompts that will walk you from curious to connected — with your own personal AI assistant running at home, 24/7.</p>
+  <p class="hero-instructions">Follow the trail in order. Copy each prompt, paste it into your favorite AI, and follow the conversation before moving to the next step.</p>
+</section>
 
-<main class="feed" id="feed"></main>
+<section class="trail" id="trail"></section>
 
-<footer class="footer">Created by <a href="https://nathancheng.com" target="_blank" rel="noopener">Nathan Cheng</a></footer>
+<section class="outro">
+  <p>That's the path. Once your claw is running, it becomes your guide from here.</p>
+  <br>
+  <p><em>Maybe this is the last guidepost that's ever needed — because now everybody will have their own.</em></p>
+</section>
+
+<footer class="footer">Created by <a href="https://www.linkedin.com/in/nathanwcheng/" target="_blank" rel="noopener">Nathan Cheng</a></footer>
 <div class="toast" id="toast"></div>
 
 <script>
-const guideposts = [
-  {id:1,topic:"business",emoji:"💼",prompt:"I'm thinking about starting a side business while working full-time. What are the 3 most important things I should consider?"},
-  {id:2,topic:"career",emoji:"🎓",prompt:"I have 10 years of experience but feel stuck. Create a 90-day plan to reinvent my career using AI tools."},
-  {id:3,topic:"finance",emoji:"🏡",prompt:"I'm a first-time home buyer with $500K budget. Walk me through a strategy to find and close without overpaying."},
-  {id:4,topic:"health",emoji:"🧠",prompt:"Design a science-backed morning routine for someone who wants more energy, focus, and less anxiety. Include timing."},
-  {id:5,topic:"tech",emoji:"💻",prompt:"I want to build my first web app but have no coding experience. What's the fastest path from zero to a working prototype using AI?"},
-  {id:6,topic:"life",emoji:"🍳",prompt:"I want to meal prep for the week but I'm bored of the same recipes. Give me a diverse 7-day plan with grocery list, under $75."},
-  {id:7,topic:"business",emoji:"📊",prompt:"My small business is doing $500K/year. What are the top 5 AI tools I should implement right now to double efficiency?"},
-  {id:8,topic:"career",emoji:"🎯",prompt:"Write me a LinkedIn headline and summary that positions me as an AI-savvy professional. I work in [my field]."},
-  {id:9,topic:"finance",emoji:"💰",prompt:"I have $10K to invest and a 10-year horizon. Compare three strategies: index funds, individual stocks, and crypto allocation."},
-  {id:10,topic:"health",emoji:"🏋️",prompt:"Create a beginner-friendly 4-week workout plan I can do at home with no equipment. Include progressive difficulty."}
+const steps = [
+  {
+    num: 1,
+    title: "The Phenomenon",
+    prompt: "I've heard about a viral \u201cclaw\u201d phenomenon \u2014 OpenClaw, Clawdbot, Moltbot, Picoclaw, Nanoclaw. What's the big deal? Should I jump on the bandwagon?"
+  },
+  {
+    num: 2,
+    title: "Choose Your Hardware",
+    prompt: "I'm sold and want to set one up at home. Some people are using a Raspberry Pi, others a Mac Mini, and I've even heard of people running it on old laptops or cloud servers. Do I need a GPU? How do I choose the right platform for my situation and budget?"
+  },
+  {
+    num: 3,
+    title: "Choose Your AI Brain",
+    prompt: "Before I install anything, I need to choose what AI brain to plug into my claw. I've heard there's a massive difference between Claude Opus 4.6 and the cheaper models, and that OpenClaw works well with both Anthropic and OpenAI. Some people pay per API call, others use a fixed subscription. What should I know before I choose, and how do I avoid a surprise bill?"
+  },
+  {
+    num: 4,
+    title: "Get It Running",
+    prompt: "I've got my hardware and my AI subscription. Walk me through the complete setup from unboxing to a running OpenClaw gateway \u2014 the foolproof version for someone who's never touched a terminal before."
+  },
+  {
+    num: 5,
+    title: "Talk From Anywhere",
+    prompt: "My gateway is running but I'm only talking to it through the terminal. I heard the real magic is when you connect it to Telegram so you can talk to your AI from your phone anywhere in the world. How do I set that up?"
+  },
+  {
+    num: 6,
+    title: "Lock It Down",
+    prompt: "Before I connect my claw to anything important, I want to make sure I'm not creating a security risk in my own house and a privacy risk for myself and my family. I've heard some people hide their API keys behind a proxy so the AI never sees the raw credentials, and others use scoped keys with minimal permissions. What's the smart way to handle security and privacy?"
+  },
+  {
+    num: 7,
+    title: "Make It Yours",
+    prompt: "My claw works but it feels generic \u2014 like talking to any chatbot. People say the game-changer is teaching it who you are with a USER.md and what you care about so it becomes genuinely useful for YOUR life and work. What should I put in these files and how specific should I get?"
+  },
+  {
+    num: 8,
+    title: "Set It Free",
+    prompt: "My claw knows me now but it's still reactive \u2014 I have to start every conversation. I've seen people whose claws proactively check their calendar, email, and weather and ping them throughout the day without being asked. I've also heard people have their claw automatically back itself up to a private GitHub repository every night. How do I set up that kind of proactive behavior with cron jobs and heartbeats?"
+  },
+  {
+    num: 9,
+    title: "Bring Others In",
+    prompt: "I want to add my claw to a family group chat or a work team channel so it can participate in conversations, answer questions, and help everyone \u2014 not just me. How do I set up multi-user group chats, and how do I make sure it knows when to speak up and when to stay quiet?"
+  },
+  {
+    num: 10,
+    title: "Expand Its World",
+    prompt: "I want to go further \u2014 connect smart home devices, hook into IoT sensors, teach my claw entirely new abilities with custom skills, maybe even give it a phone. How do I create my own skills, where do I find ones that other people have built that don't include hidden malware, and what devices can a claw actually control?"
+  }
 ];
 
 const aiLinks = [
@@ -148,40 +190,34 @@ const aiLinks = [
   {name:"Perplexity",cls:"btn-perplexity",base:"https://www.perplexity.ai/search?q=",svg:'<svg viewBox="0 0 24 24" fill="white"><path d="M12 2L4 6v6l8 4 8-4V6l-8-4zm0 2.2L17.6 7 12 9.8 6.4 7 12 4.2zM5.5 8.1l5.5 2.7v5.8l-5.5-2.7V8.1zm13 0v5.8l-5.5 2.7v-5.8l5.5-2.7zM12 18.5l-3-1.5v2.5l3 1.5 3-1.5V17l-3 1.5z"/></svg>'}
 ];
 
-function renderCards(){
-  const feed=document.getElementById('feed');
-  feed.innerHTML=guideposts.map(g=>{
-    const buttons=aiLinks.map(ai=>
-      `<a class="ai-btn ${ai.cls}" href="${ai.base}${encodeURIComponent(g.prompt)}" target="_blank" rel="noopener" data-tooltip="${ai.name}">${ai.svg}</a>`
+function render(){
+  const trail = document.getElementById('trail');
+  trail.innerHTML = steps.map(s => {
+    const buttons = aiLinks.map(ai =>
+      `<a class="ai-btn ${ai.cls}" href="${ai.base}${encodeURIComponent(s.prompt)}" target="_blank" rel="noopener" data-tooltip="${ai.name}">${ai.svg}</a>`
     ).join('');
-    return `<article class="card" id="gp-${g.id}" data-topic="${g.topic}">
-      <div class="card-topic topic-${g.topic}">${g.emoji} ${g.topic}</div>
-      <p class="card-prompt">"${g.prompt}"</p>
-      <div class="card-actions">
-        <div class="ai-buttons"><span>Ask&nbsp;AI:</span>${buttons}</div>
-        <button class="share-btn" onclick="share('gp-${g.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Share</button>
+    return `<div class="step" id="step-${s.num}">
+      <div class="step-number">${s.num}</div>
+      <div class="step-title">${s.title}</div>
+      <div class="step-card">
+        <p class="step-prompt">\u201c${s.prompt}\u201d</p>
+        <div class="step-actions">
+          <div class="ai-buttons"><span class="ai-label">Ask:</span>${buttons}</div>
+          <button class="copy-btn" onclick="copyPrompt(${s.num-1})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button>
+        </div>
       </div>
-    </article>`;
+    </div>`;
   }).join('');
 }
 
-function share(id){
-  const url=`${location.origin}${location.pathname}#${id}`;
-  navigator.clipboard.writeText(url).then(()=>showToast('Link copied!')).catch(()=>showToast('Could not copy link'));
+function copyPrompt(i){
+  navigator.clipboard.writeText(steps[i].prompt).then(()=>showToast('Prompt copied!')).catch(()=>showToast('Could not copy'));
 }
 
 function showToast(msg){
   const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2000);
 }
-
-document.getElementById('filters').addEventListener('click',e=>{
-  if(!e.target.classList.contains('filter-btn'))return;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  e.target.classList.add('active');
-  const f=e.target.dataset.filter;
-  document.querySelectorAll('.card').forEach(c=>{c.classList.toggle('hidden',f!=='all'&&c.dataset.topic!==f)});
-});
 
 function toggleTheme(){
   const d=document.documentElement;
@@ -195,7 +231,7 @@ function toggleTheme(){
   const saved=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');
   document.documentElement.setAttribute('data-theme',saved);
   document.querySelector('.theme-toggle').textContent=saved==='dark'?'☀️':'🌙';
-  renderCards();
+  render();
   if(location.hash){const el=document.querySelector(location.hash);if(el)setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),300)}
 })();
 </script>
